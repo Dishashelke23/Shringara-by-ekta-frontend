@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order Success - Ekta @ Home</title>
+  <link rel="stylesheet" href="success.css"/>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <img src="ekta_logo-removebg-preview.png" alt="Ekta Logo">
+    <h1 class="site-title">The Ekta Project</h1>
+  </div>
+  <nav>
+    <a href="ecomlp.html">Home</a>
+    <a href="ecomshop.html">Shop</a>
+    <a href="ecomcart.html">Cart</a>
+  </nav>
+</header>
+
+<main class="success-container">
+  <div class="success-box">
+    <h2>✅ Order Confirmed!</h2>
+    <p>Thank you for shopping with <b>The Ekta Project</b>. Your payment was successful.</p>
+
+    <div class="order-details">
+      <h3>Order Summary</h3>
+      <p><b>Payment ID:</b> <span id="payment-id"></span></p>
+      <p><b>Order ID:</b> <span id="order-id"></span></p>
+      <p><b>Subtotal:</b> <span id="subtotal">₹0</span></p>
+      <p><b>Shipping:</b> <span id="shipping">₹0</span></p>
+      <h4><b>Grand Total:</b> <span id="grand-total">₹0</span></h4>
+    </div>
+
+    <button onclick="window.location.href='ecomshop.html'">🛍 Continue Shopping</button>
+  </div>
+</main>
+
+<script src="success.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shriṅgāra by Ekta</title>
+   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <link rel="stylesheet" href="product.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">
+  <img src="Ekta white logo.png" alt="Ekta Logo">
+  <h1 class="site-title">Shriṅgāra</h1>
+  </div>
+  <nav>
+    <a href="ecomlp.html">Home</a>
+    <a href="ecomshop.html">Shop</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+    <a href="ecomcart.html" class="cart-link" id="cart-link">🛒 <span id="cart-count">0</span></a>
+  </nav>
+</header>
+
+
+  <!-- Product Image Slider -->
+  <main class="product-page">
+  <!-- IMAGE SLIDER -->
+  <div class="swiper-container">
+    <div class="swiper-wrapper" id="product-images">
+      <!-- JS will insert images here -->
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+  
+  <!-- PRODUCT DETAILS -->
+  <div class="product-info">
+    <h1 id="product-name"></h1>
+    <p class="price" id="product-price"></p>
+    <p class="description" id="product-description"></p>
+    
+    <div class="product-sizes">
+  <h4>Select Size:</h4>
+  <div class="sizes">
+    <div class="size-box" data-size="XXS">XXS</div>
+    <div class="size-box" data-size="XS">XS</div>
+    <div class="size-box" data-size="S">S</div>
+    <div class="size-box" data-size="M">M</div>
+    <div class="size-box" data-size="L">L</div>
+    <div class="size-box" data-size="XL" data-extra="100">XL +₹100</div>
+    <div class="size-box" data-size="XXL" data-extra="200">XXL +₹200</div>
+  </div>
+  
+  <button id="size-chart-btn" class="size-chart-btn">View Size Chart</button>
+</div>
+
+
+    <!-- Quantity Selector -->
+    <div class="quantity-control">
+      <button id="decrease-qty">-</button>
+      <input type="number" id="quantity" value="1" min="1" />
+      <button id="increase-qty">+</button>
+    </div>
+
+    <button id="add-to-cart-btn" class="add-to-cart">Add to Cart</button>
+  </div>
+</main>
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="cart.js"></script>
+<script src="product.js"></script>
+
+
+
+
+</body>
+</html>

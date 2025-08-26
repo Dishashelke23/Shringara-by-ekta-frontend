@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cart — Shriṅgāra by Ekta</title>
+  <link rel="stylesheet" href="cart.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a href="ecomshop.html" class="back">← Continue shopping</a>
+    <h1>Order Summary</h1>
+  </header>
+
+  <main class="container">
+    <section class="invoice-box" id="invoice-box">
+      <!-- Invoice header -->
+      <div class="invoice-header">
+        <div class="brand">
+          <img src="Ekta white logo.png" alt="Ekta" />
+          <div>
+            <h2>The Ekta Project</h2>
+            <small>Ekta @Home</small>
+          </div>
+        </div>
+        <div class="invoice-meta">
+          <div>Invoice #: <span id="invoice-id">—</span></div>
+          <div>Date: <span id="invoice-date"></span></div>
+        </div>
+      </div>
+
+      <!-- Items table -->
+<table class="invoice-table" id="invoice-table">
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Qty</th>
+      <th>Price</th>
+      <th>Total</th>
+      <th>Action</th> 
+    </tr>
+  </thead>
+  <tbody id="invoice-body"></tbody>
+  <tfoot>
+    <tr>
+      <td colspan="4" class="right">Subtotal</td>
+      <td id="subtotal">₹0.00</td>
+    </tr>
+    <tr>
+      <td colspan="4" class="right">Shipping</td>
+      <td id="shipping">₹0.00</td>
+    </tr>
+    <tr class="grand-total">
+      <td colspan="4" class="right"><strong>Total</strong></td>
+      <td id="grand-total"><strong>₹0.00</strong></td>
+    </tr>
+  </tfoot>
+</table>
+
+      <p id="free-shipping-message" style="font-weight:bold; margin-top:10px;"></p>
+
+
+      <div class="invoice-actions">
+        <button id="clear-cart" class="btn">Clear Cart</button>
+        <button id="proceed-to-checkout" class="btn primary">Proceed to Checkout</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="cart.js" defer></script>
+</body>
+</html>
+
