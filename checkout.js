@@ -1,4 +1,6 @@
+const BASE_URL = "https://api.theektaproject.org";
 const form = document.getElementById("checkout-form");
+
 
 // Get cart from localStorage or empty array
 let cart = JSON.parse(localStorage.getItem("ekta_cart_v1")) || [];
@@ -33,13 +35,13 @@ form.addEventListener("submit", async (e) => {
 
   try {
     // 1️⃣ Create order in backend
-    const res = await fetch("http://127.0.0.1:5000/api/orders/create", {
+    const createRes = await fetch(`${BASE_URL}/api/orders/create`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ cart, summary, customer }),
     });
 
-    const data = await res.json();
+    const data = await createRes.json();
     if (!data.orderId) throw new Error("Order creation failed");
 
     // 2️⃣ Razorpay checkout
@@ -59,7 +61,7 @@ form.addEventListener("submit", async (e) => {
       handler: async function (response) {
         try {
           // 3️⃣ Verify payment in backend
-          const verifyRes = await fetch("http://127.0.0.1:5000/api/orders/verify", {
+          const verifyRes = await fetch(`${BASE_URL}/api/orders/verify`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(response),
