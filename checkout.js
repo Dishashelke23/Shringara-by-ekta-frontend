@@ -1,4 +1,4 @@
-const BASE_URL = "https://api.theektaproject.org";
+
 const form = document.getElementById("checkout-form");
 
 // Get cart from localStorage or empty array
@@ -43,58 +43,53 @@ form.addEventListener("submit", async (e) => {
     const data = await createRes.json();
     if (!data.orderId) throw new Error("Order creation failed");
 
-    // 2️⃣ Razorpay checkout
+    // ✅ 2. Open Razorpay checkout with created order
     const options = {
-      key: data.key,
-      amount: Math.round(Number(summary.grand) * 100), // paise
-      currency: "INR",
-      name: "Shriṅgāra by Ekta",
-      description: "Purchase from Shriṅgāra",
-      order_id: data.orderId,
+      key: "rzp_test_RA3DWLskgIPbV1", // keep ONLY key_id here (safe for frontend)
+      amount: orderData.amount,       // comes from backend (already in paise)
+      currency: orderData.currency,
+      name: "The Ekta Project",
+      description: "Order Payment",
+      order_id: orderData.id,         // critical: backend-generated Razorpay order_id
+      handler: async function (res) {
+        // ✅ 3. Verify payment on backend
+        const verifyRes = await fetch("https://www.theektaproject.org/verify-payment", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            orderId: orderData.id,
+            paymentId: res.razorpay_payment_id,
+            signature: res.razorpay_signature, // add signature too for proper validation
+          }),
+        });
+
+        if (verifyRes.ok) {
+          // Clear cart after success
+          localStorage.removeItem("ekta_cart_v1");
+          localStorage.removeItem("order-summary");
+
+          window.location.href = "order-success.html";
+        } else {
+          window.location.href = "order-failure.html";
+        }
+      },
       prefill: {
         name: customer.name,
         email: customer.email,
         contact: customer.phone,
       },
-      theme: { color: "#F37254" },
-      handler: async function (response) {
-        try {
-          // 3️⃣ Verify payment in backend
-          const verifyRes = await fetch(`${BASE_URL}/api/orders/verify`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(response),
-          });
-          const verifyData = await verifyRes.json();
-
-          if (verifyData.success) {
-            // ✅ Clear cart after successful payment
-            localStorage.removeItem("ekta_cart_v1");
-
-            // Redirect to success page
-            window.location.href = `successful.html?payment_id=${response.razorpay_payment_id}&order_id=${response.razorpay_order_id}`;
-          } else {
-            alert("Payment verification failed.");
-          }
-        } catch (err) {
-          console.error(err);
-          alert("Payment verification error.");
-        }
+      notes: {
+        address: `${customer.address}, ${customer.city}, ${customer.state}, ${customer.pincode}`,
       },
-      modal: {
-        escape: true,
-        ondismiss: function () {
-          alert("Payment cancelled.");
-        },
+      theme: {
+        color: "#F37254",
       },
     };
 
-    // Initialize Razorpay
     const rzp = new Razorpay(options);
     rzp.open();
-
   } catch (err) {
-    console.error(err);
+    console.error("Checkout error:", err);
     alert("Payment initiation failed. Please try again.");
   }
 });
