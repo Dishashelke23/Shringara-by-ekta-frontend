@@ -1,7 +1,6 @@
 const BASE_URL = "https://api.theektaproject.org";
 const form = document.getElementById("checkout-form");
 
-
 // Get cart from localStorage or empty array
 let cart = JSON.parse(localStorage.getItem("ekta_cart_v1")) || [];
 
@@ -34,10 +33,10 @@ form.addEventListener("submit", async (e) => {
   const summary = { subtotal: itemsTotal, shipping, grand: grandTotal };
 
   try {
-    // 1️⃣ Create order in backend
-    const createRes = await fetch(`${BASE_URL}/api/orders/create`, {
+    // 1️⃣ Create order in backend (cache-busting added)
+    const createRes = await fetch(`${BASE_URL}/api/orders/create?cb=${Date.now()}`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "Cache-Control": "no-cache" },
       body: JSON.stringify({ cart, summary, customer }),
     });
 
@@ -47,7 +46,7 @@ form.addEventListener("submit", async (e) => {
     // 2️⃣ Razorpay checkout
     const options = {
       key: data.key,
-      amount: Number(grandTotal * 100), // paise
+      amount: Math.round(Number(summary.grand) * 100), // paise
       currency: "INR",
       name: "Shriṅgāra by Ekta",
       description: "Purchase from Shriṅgāra",
@@ -67,7 +66,11 @@ form.addEventListener("submit", async (e) => {
             body: JSON.stringify(response),
           });
           const verifyData = await verifyRes.json();
+
           if (verifyData.success) {
+            // ✅ Clear cart after successful payment
+            localStorage.removeItem("ekta_cart_v1");
+
             // Redirect to success page
             window.location.href = `successful.html?payment_id=${response.razorpay_payment_id}&order_id=${response.razorpay_order_id}`;
           } else {
@@ -82,15 +85,16 @@ form.addEventListener("submit", async (e) => {
         escape: true,
         ondismiss: function () {
           alert("Payment cancelled.");
-        }
-      }
+        },
+      },
     };
 
+    // Initialize Razorpay
     const rzp = new Razorpay(options);
     rzp.open();
 
   } catch (err) {
     console.error(err);
-    alert("Payment initiation failed.");
+    alert("Payment initiation failed. Please try again.");
   }
 });
