@@ -9,26 +9,36 @@
 <body>
 
 <header>
+
+ <!-- Hamburger Menu (for mobile) -->
+  <div class="hamburger">☰</div>
+
   <div class="logo">
-  <img src="Ekta white logo.png" alt="Ekta Logo">
-  <h1 class="site-title">Shriṅgāra</h1>
+    <img src="Ekta white logo.png" alt="Ekta Logo">
+    <h1 class="site-title">Shriṅgāra</h1>
   </div>
-  <nav>
+
+  <!-- Navigation -->
+  <nav class="nav-links">
     <a href="index.html">Home</a>
     <a href="ecomshop.html">Shop</a>
     <a href="#">About</a>
     <a href="#">Contact</a>
   </nav>
+
+ 
 </header>
 
+<!-- Hero Section -->
 <section class="hero">
   <div class="hero-content">
     <h1>Crafted with Care. Empowering Lives.</h1>
     <p>Every purchase supports families in need through Ekta NGO.</p>
-    <button class="btn"><a href="ecomshop.html" class="btn">Shop Now</a></button>
+    <a href="ecomshop.html" class="btn">Shop Now</a>
   </div>
 </section>
 
+<!-- About -->
 <section class="about">
   <h2>About Us</h2>
   <p>Ekta is a non-profit organization dedicated to empowering marginalized communities through sustainable livelihoods. Our beautifully crafted kurtis are made by skilled artisans, ensuring fair wages and preserving cultural heritage.</p>
@@ -36,10 +46,15 @@
   <a href="index.html" class="btn">Learn More</a>
 </section>
 
+<!-- Featured Products -->
 <section class="products">
   <h2 style="text-align:center; margin-bottom:2rem;">Featured Products</h2>
 
+  <div class="product-slider">
+<button class="slide-btn left">&#10094;</button>
+
   <div class="product-grid">
+
     <div class="product-card"
          data-name="Halter Neck Kurti Top"
          data-price="1500"
@@ -48,10 +63,9 @@
       <img src="images/product1.png" alt="Halter Neck Kurti Top" />
       <h3>Halter Neck Kurti Top</h3>
       <p>₹1500</p>
-      <a href="product.html?id=1" class="btn">Buy Now</a>
+      <a href="product.html?id=1" class="btn2">Buy Now</a>
     </div>
 
-    
     <div class="product-card"
          data-name="Noodle Strap Corset Kurti"
          data-price="750"
@@ -60,10 +74,9 @@
       <img src="images/product2.png" alt="Noodle Strap Corset Kurti" />
       <h3>Noodle Strap Corset Kurti</h3>
       <p>₹750</p>
-      <a href="product.html?id=2" class="btn">Buy Now</a>
+      <a href="product.html?id=2" class="btn2">Buy Now</a>
     </div>
 
-  
     <div class="product-card"
          data-name="Deep Back Kurti"
          data-price="2500"
@@ -72,22 +85,93 @@
       <img src="images/product3.png" alt="Deep Back Kurti" />
       <h3>Deep Back Kurti</h3>
       <p>₹2500</p>
-      <a href="product.html?id=3" class="btn">Buy Now</a>
+      <a href="product.html?id=3" class="btn2">Buy Now</a>
+
     </div>
   </div>
+
+<button class="slide-btn right">&#10095;</button>
+  </div>
+
 </section>
 
-
-
+<!-- Impact -->
 <section class="impact">
   <p>With every product sold, you help provide fair wages and sustainable income for artisans in need.</p>
 </section>
 
+<!-- Footer -->
 <footer>
-  <p>&copy; 2025 The Ekta Project. All Rights Reserved. | <a href="https://the-ekta-project.vercel.app/">Visit Main NGO Website</a></p>
+  <p>&copy; 2025 The Ekta Project. All Rights Reserved. | 
+     <a href="#">Visit Main NGO Website</a></p>
 </footer>
 
-<script src="index.js"></script>
+
+  <!-- Toggle Mobile Menu -->
+<script>
+  const hamburger = document.querySelector(".hamburger");
+  const navLinks = document.querySelector(".nav-links");
+
+  hamburger.addEventListener("click", () => {
+    navLinks.classList.toggle("show");
+  });
+</script>
+
+
+<!--draggable sliding-->
+<script>
+  const slider = document.querySelector('.product-grid');
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  slider.addEventListener('mousedown', (e) => {
+    isDown = true;
+    slider.classList.add('active');
+    slider.style.cursor = "grabbing";
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+  });
+
+  slider.addEventListener('mouseleave', () => {
+    isDown = false;
+    slider.style.cursor = "grab";
+  });
+
+  slider.addEventListener('mouseup', () => {
+    isDown = false;
+    slider.style.cursor = "grab";
+  });
+
+  slider.addEventListener('mousemove', (e) => {
+    if(!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - slider.offsetLeft;
+    const walk = (x - startX) * 2; // adjust multiplier for speed
+    slider.scrollLeft = scrollLeft - walk;
+  });
+</script>
+
+
+<!-- Slide Buttons chevrons-->
+<script>
+  const productGrid = document.querySelector('.product-grid');
+  const leftBtn = document.querySelector('.slide-btn.left');
+  const rightBtn = document.querySelector('.slide-btn.right');
+
+  
+  const scrollAmount = document.querySelector('.product-card').offsetWidth + 20;
+
+  rightBtn.addEventListener('click', () => {
+    productGrid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  });
+
+  leftBtn.addEventListener('click', () => {
+    productGrid.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  });
+</script>
+
+
 
 </body>
 </html>

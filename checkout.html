@@ -9,59 +9,90 @@
 <body>
 
 <header>
-  <div class="logo">
-    <img src="Ekta white logo.png" alt="Ekta Logo">
-    <h1 class="site-title">Shriṅgāra</h1>
-  </div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="ecomshop.html">Shop</a>
-    <a href="ecomcart.html" class="cart-link" id="cart-link">🛒 <span id="cart-count">0</span></a>
-    <a href="checkout.html" class="active">Checkout</a>
-  </nav>
-</header>
-
-<main class="checkout-container">
-  <h2>Checkout</h2>
-
-  <!-- Customer Details Form -->
-  <form id="checkout-form" class="checkout-form">
-    <h3>Billing & Shipping Details</h3>
-    <label>Full Name</label>
-    <input type="text" id="name" required>
-
-    <label>Email</label>
-    <input type="email" id="email" required>
-
-    <label>Phone Number</label>
-    <input type="tel" id="phone" required>
-
-    <label>Address</label>
-    <textarea id="address" rows="3" required></textarea>
-
-    <label>City</label>
-    <input type="text" id="city" required>
-
-    <label>State</label>
-    <input type="text" id="state" required>
-
-    <label>Pincode</label>
-    <input type="text" id="pincode" required>
-
-    <!-- Order Summary -->
-    <div class="order-summary">
-      <h3>Order Summary</h3>
-      <p>Items Total: <span id="items-total">₹0</span></p>
-      <p>Shipping: <span id="shipping">₹0</span></p>
-      <h4>Grand Total: <span id="grand-total">₹0</span></h4>
+    <div class="logo">
+      <img src="Ekta white logo.png" alt="Ekta Logo">
+      <h1 class="site-title">Shriṅgāra</h1>
     </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="ecomshop.html">Shop</a>
+      <a href="ecomcart.html">Cart</a>
+      <a href="checkout.html" class="active">Checkout</a>
+    </nav>
+  </header>
 
-    <button type="submit" id="pay-btn">Proceed to Payment</button>
-  </form>
-</main>
+  <main>
+    <div class="checkout-container">
+      <div class="checkout-form-container">
+        <h2>Billing Information</h2>
+        <form id="checkout-form">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Enter your full name" required>
+            <div class="error" id="name-error">Please enter your name</div>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+            <div class="error" id="email-error">Please enter a valid email</div>
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="Enter your phone number" required>
+            <div class="error" id="phone-error">Please enter a valid phone number</div>
+          </div>
+          
+          <div class="form-group">
+            <label for="address">Shipping Address</label>
+            <textarea id="address" rows="3" placeholder="Enter your complete address" required></textarea>
+            <div class="error" id="address-error">Please enter your address</div>
+          </div>
+          
+          <div class="row">
+            <div class="form-group">
+              <label for="city">City</label>
+              <input type="text" id="city" placeholder="Enter your city" required>
+              <div class="error" id="city-error">Please enter your city</div>
+            </div>
+            
+            <div class="form-group">
+              <label for="state">State</label>
+              <input type="text" id="state" placeholder="Enter your state" required>
+              <div class="error" id="state-error">Please enter your state</div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="pincode">PIN Code</label>
+            <input type="text" id="pincode" placeholder="Enter your PIN code" required>
+            <div class="error" id="pincode-error">Please enter a valid PIN code</div>
+          </div>
+          
+          <button type="submit" class="btn btn-primary" id="pay-btn">Proceed to Payment</button>
+          <button type="button" class="btn btn-secondary" onclick="window.location.href='ecomcart.html'">Back to Cart</button>
+        </form>
+      </div>
+      
+      <div class="order-summary">
+        <h2>Order Summary</h2>
+        <div id="order-items">
+          <!-- Order items will be populated by JavaScript -->
+        </div>
+        <div class="order-total">
+          <div>Total: <span id="grand-total">₹0.00</span></div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <div class="loading-overlay" id="loading-overlay">
+    <div class="spinner"></div>
+  </div>
 
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<script src="checkout.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="checkout.js"></script>
+
 </body>
 </html>
-

@@ -61,3 +61,5 @@ document.querySelectorAll(".product-card img, .product-card h3").forEach(item =>
     });
 });
 
+
+
