@@ -201,6 +201,48 @@ header img {
 }
 
 
+/*button 2*/
+
+.btn2 {
+  position: relative;
+  display: inline-block;
+  background: transparent;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--accent);
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  text-decoration: none;
+  overflow: hidden;
+  transition: color 0.3s ease;
+  z-index: 1;
+}
+
+/* Background overlay goes behind text */
+.btn2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--accent);
+  z-index: -1;   /* sits behind text */
+  transition: width 0.5s ease;
+}
+
+/* Hover: background wipes away */
+.btn2:hover {
+  color: var(--accent);
+}
+
+.btn2:hover::before {
+  width: 0;   /* shrink background */
+  left: auto;
+  right: 0;   /* makes it wipe left → right */
+}
+
 
 /* Responsive */
 @media (max-width: 768px) {
