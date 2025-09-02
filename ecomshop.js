@@ -48,20 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Open product details when clicking image or name
-document.querySelectorAll(".product-card img, .product-card h3").forEach(item => {
-    item.addEventListener("click", function () {
-        const card = this.closest(".product-card");
-        const productData = {
-            name: card.dataset.name,
-            price: parseFloat(card.dataset.price),
-            description: card.dataset.description,
-            images: JSON.parse(card.dataset.images)
-        };
-        localStorage.setItem("selectedProduct", JSON.stringify(productData));
-        window.location.href = "product.html";
-    });
-});
+
 
 // Handle click on product image or name → go to product page
 document.querySelectorAll(".product-card img, .product-card h3").forEach(item => {

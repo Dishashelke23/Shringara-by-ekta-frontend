@@ -171,7 +171,7 @@ nav a:hover::after {
   padding: 6px;
 }
 
-.add-to-cart {
+.btn {
   background: #005bbb;
   color: white;
   border: none;
@@ -182,7 +182,7 @@ nav a:hover::after {
   transition: background 0.3s ease;
 }
 
-.add-to-cart:hover {
+.btn:hover {
   background: #f59e0b;
 }
 

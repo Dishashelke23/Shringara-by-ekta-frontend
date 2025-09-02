@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const productData = JSON.parse(localStorage.getItem("selectedProduct"));
   const cartCount = document.getElementById("cart-count");
   const qtyInput = document.getElementById("quantity");
-  const addToCartBtn = document.getElementById("add-to-cart-btn");
+  const addToCartBtn = document.getElementById("buy-now-btn");
   const sizeBoxes = document.querySelectorAll(".size-box");
   let selectedSize = null;
 
