@@ -179,6 +179,7 @@ header img {
   border-radius: 10px;
   height: 700px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
 }
 
 .product-card img {
@@ -186,20 +187,6 @@ header img {
   height: auto;
   border-radius: 10px;
 }
-
-.product-card button {
-  padding: 8px 15px;
-  background: var(--accent);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.product-card button:hover {
-  background: #003f7f;
-}
-
 
 /*button 2*/
 

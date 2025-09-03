@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const productData = JSON.parse(localStorage.getItem("selectedProduct"));
   const cartCount = document.getElementById("cart-count");
   const qtyInput = document.getElementById("quantity");
-  const addToCartBtn = document.getElementById("buy-now-btn");
+  const buyNowBtn = document.getElementById("buy-now-btn"); // ✅ match product.html
   const sizeBoxes = document.querySelectorAll(".size-box");
   let selectedSize = null;
 
@@ -25,15 +25,17 @@ document.addEventListener("DOMContentLoaded", () => {
   // Fill product details
   document.getElementById("product-name").textContent = productData.name;
   document.getElementById("product-price").textContent = `₹${productData.price}`;
-  document.getElementById("product-description").textContent = productData.description;
+  document.getElementById("product-description").textContent = productData.description || "";
 
   const imagesWrapper = document.getElementById("product-images");
-  productData.images.forEach(img => {
-    const slide = document.createElement("div");
-    slide.className = "swiper-slide";
-    slide.innerHTML = `<img src="${img}" alt="${productData.name}">`;
-    imagesWrapper.appendChild(slide);
-  });
+  if (productData.images && productData.images.length) {
+    productData.images.forEach(img => {
+      const slide = document.createElement("div");
+      slide.className = "swiper-slide";
+      slide.innerHTML = `<img src="${img}" alt="${productData.name}">`;
+      imagesWrapper.appendChild(slide);
+    });
+  }
 
   // Swiper init
   new Swiper(".swiper-container", {
@@ -56,17 +58,17 @@ document.addEventListener("DOMContentLoaded", () => {
     if (qtyInput.value > 1) qtyInput.value = parseInt(qtyInput.value) - 1;
   });
 
-  // Size selection toggle
+  // ✅ Size selection toggle (fix: use "active" for consistency)
   sizeBoxes.forEach(box => {
     box.addEventListener("click", () => {
-      sizeBoxes.forEach(b => b.classList.remove("selected"));
-      box.classList.add("selected");
+      sizeBoxes.forEach(b => b.classList.remove("active"));
+      box.classList.add("active");
       selectedSize = box.dataset.size;
     });
   });
 
-  // Add to Cart handler
-  addToCartBtn.addEventListener("click", () => {
+  // ✅ Add to Cart handler
+  buyNowBtn.addEventListener("click", () => {
     if (!selectedSize) {
       alert("⚠️ Please select a size before adding to cart.");
       return;
@@ -82,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
       price: finalPrice,
       qty: parseInt(qtyInput.value),
       size: selectedSize,
-      image: productData.images[0] || "images/placeholder.jpg"
+      image: productData.images ? productData.images[0] : "images/placeholder.jpg"
     };
 
     cart.push(cartItem);
@@ -90,16 +92,5 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCartCount();
 
     alert(`✅ ${productData.name} (${selectedSize}) added to cart!`);
-    
   });
 });
-
- // Handle size selection
-  document.querySelectorAll(".size-box").forEach(box => {
-    box.addEventListener("click", () => {
-      document.querySelectorAll(".size-box").forEach(b => b.classList.remove("active"));
-      box.classList.add("active");
-      selectedSize = box.getAttribute("data-size");
-      extraPrice = parseInt(box.getAttribute("data-extra")) || 0;
-    });
-  });

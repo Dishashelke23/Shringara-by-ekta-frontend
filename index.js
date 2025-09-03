@@ -41,24 +41,36 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Handle click on product image or name → go to product page
-document.querySelectorAll(".product-card img, .product-card h3").forEach(item => {
-    item.addEventListener("click", function () {
-        const card = this.closest(".product-card");
+ // Save product to localStorage before going to product.html
+  document.querySelectorAll(".product-card img, .product-card h3, .product-card a")
+    .forEach(el => {
+      el.addEventListener("click", (e) => {
+        const card = e.currentTarget.closest(".product-card");
 
-        // Get product data from data attributes
-        const productData = {
-            name: card.dataset.name,
-            price: parseFloat(card.dataset.price),
-            description: card.dataset.description,
-            images: JSON.parse(card.dataset.images) 
-        };
+        const name = (card.dataset.name || card.querySelector("h3")?.textContent || "").trim();
+        const price = parseFloat(
+          (card.dataset.price || card.querySelector("p")?.textContent || "0").replace(/[₹$,]/g, "")
+        );
+        const description = card.dataset.description || name;
 
-        // Save in localStorage
+        // Be forgiving if data-images is missing or malformed
+        let images = [card.querySelector("img")?.src].filter(Boolean);
+        if (card.dataset.images) {
+          try { images = JSON.parse(card.dataset.images); }
+          catch { /* fallback already set */ }
+        }
+
+        const productData = { name, price, description, images };
         localStorage.setItem("selectedProduct", JSON.stringify(productData));
 
-        // Redirect to product page
-        window.location.href = "product.html";
-    });
+        // If it was a link, stop default navigation so save completes, then navigate.
+        if (e.currentTarget.tagName === "A") {
+          e.preventDefault();
+          window.location.href = "product.html";
+        }
+      });
+
+
 });
 
 

@@ -6,68 +6,61 @@ document.addEventListener("DOMContentLoaded", () => {
   let cart = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
   updateCartCount();
 
+  // Add-to-cart buttons (if you add them later)
   document.querySelectorAll(".product-card button").forEach(btn => {
     btn.addEventListener("click", e => {
-      const card = e.target.closest(".product-card");
-      const name = card.querySelector("h3").textContent;
-      const price = parseFloat(card.querySelector("p").textContent.replace("₹", "").replace("$", ""));
-      const image = card.querySelector("img").src;
+      const card = e.currentTarget.closest(".product-card");
+      const name = (card.dataset.name || card.querySelector("h3")?.textContent || "").trim();
+      const price = parseFloat(
+        (card.dataset.price || card.querySelector("p")?.textContent || "0").replace(/[₹$,]/g, "")
+      );
+      const image = card.querySelector("img")?.src;
 
       cart.push({ name, price, image, qty: 1 });
       localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
       updateCartCount();
-
-      flyToCart(e.target, image);
     });
   });
 
   function updateCartCount() {
-    cartCount.textContent = cart.length;
+  const totalQty = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+  cartCount.textContent = totalQty;
+}
+
+  if (cartIcon) {
+    cartIcon.addEventListener("click", () => (window.location.href = "ecomcart.html"));
   }
 
-  function flyToCart(button, imageSrc) {
-    const img = document.createElement("img");
-    img.src = imageSrc;
-    img.classList.add("fly-img");
-    document.body.appendChild(img);
+  // Save product to localStorage before going to product.html
+  document.querySelectorAll(".product-card img, .product-card h3, .product-card a")
+    .forEach(el => {
+      el.addEventListener("click", (e) => {
+        const card = e.currentTarget.closest(".product-card");
 
-    const rect = button.closest(".product-card").querySelector("img").getBoundingClientRect();
-    img.style.left = rect.left + "px";
-    img.style.top = rect.top + "px";
-    img.offsetWidth;
+        const name = (card.dataset.name || card.querySelector("h3")?.textContent || "").trim();
+        const price = parseFloat(
+          (card.dataset.price || card.querySelector("p")?.textContent || "0").replace(/[₹$,]/g, "")
+        );
+        const description = card.dataset.description || name;
 
-    const cartRect = cartIcon.getBoundingClientRect();
-    img.style.transform = `translate(${cartRect.left - rect.left}px, ${cartRect.top - rect.top}px) scale(0.2)`;
-    img.style.opacity = "0.5";
+        // Be forgiving if data-images is missing or malformed
+        let images = [card.querySelector("img")?.src].filter(Boolean);
+        if (card.dataset.images) {
+          try { images = JSON.parse(card.dataset.images); }
+          catch { /* fallback already set */ }
+        }
 
-    setTimeout(() => img.remove(), 1000);
-  }
-
-  cartIcon.addEventListener("click", () => {
-    window.location.href = "ecomcart.html";
-  });
-});
-
-
-
-// Handle click on product image or name → go to product page
-document.querySelectorAll(".product-card img, .product-card h3").forEach(item => {
-    item.addEventListener("click", function () {
-        const card = this.closest(".product-card");
-
-        // Get product data from data attributes
-        const productData = {
-            name: card.dataset.name,
-            price: parseFloat(card.dataset.price),
-            description: card.dataset.description,
-            images: JSON.parse(card.dataset.images) 
-        };
-
-        // Save in localStorage
+        const productData = { name, price, description, images };
         localStorage.setItem("selectedProduct", JSON.stringify(productData));
 
-        // Redirect to product page
-        window.location.href = "product.html";
+        // If it was a link, stop default navigation so save completes, then navigate.
+        if (e.currentTarget.tagName === "A") {
+          e.preventDefault();
+          window.location.href = "product.html";
+        }
+      });
     });
-});
 
+
+    
+});
