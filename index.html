@@ -3,19 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shriṅgāra by Ekta</title>
+  <title>Shringara by Ekta</title>
   <link rel="stylesheet" href="index.css">
 </head>
 <body>
+
+
+  <!-- Loading Overlay -->
+<div id="loading-overlay">
+  <div class="loader-content">
+    <h1>Shringara</h1>
+  </div>
+</div>
+
+
+  <header>
+  <div class="top-bar">
+    <p>Free Shipping on Orders Over ₹999!</p>
+  </div>
+</header>
 
 <header>
 
  <!-- Hamburger Menu (for mobile) -->
   <div class="hamburger">☰</div>
 
-  <div class="logo">
-    <img src="Ekta white logo.png" alt="Ekta Logo">
-    <h1 class="site-title">Shriṅgāra</h1>
+  <div class="title-container">
+    <h1 class="site-title">Shringara</h1>
   </div>
 
   <!-- Navigation -->
@@ -106,6 +120,20 @@
   <p>&copy; 2025 The Ekta Project. All Rights Reserved. | 
      <a href="#">Visit Main NGO Website</a></p>
 </footer>
+
+
+<!-- Loading Overlay Script -->
+<script>
+  window.addEventListener('load', () => {
+    const loader = document.getElementById('loading-overlay');
+    loader.style.transition = 'opacity 0.5s ease';
+    loader.style.opacity = '0';
+    setTimeout(() => {
+      loader.style.display = 'none';
+    }, 500); 
+  });
+</script>
+
 
 
   <!-- Toggle Mobile Menu -->
