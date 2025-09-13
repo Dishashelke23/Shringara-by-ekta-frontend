@@ -1,5 +1,5 @@
 // ====== Backend URLs ======
-const BACKEND_URL = "http://localhost:3000/auth/google";
+const BACKEND_URL = "https://shringara-by-ekta-backend-production.up.railway.app";
 const GOOGLE_CONFIG_URL = "http://localhost:3000/config/google";
 
 // ====== Initialize Google Sign-In ======

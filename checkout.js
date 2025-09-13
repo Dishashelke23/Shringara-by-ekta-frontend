@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const loadingOverlay = document.getElementById('loading-overlay');
     
     // ✅ Change this to your deployed backend (Railway/Render) when live
-    const SERVER_URL = 'http://localhost:3000';
+    const SERVER_URL = 'https://shringara-by-ekta-backend-production.up.railway.app';
     
     if (cart.length === 0) {
         orderItemsContainer.innerHTML = '<p>Your cart is empty</p>';
