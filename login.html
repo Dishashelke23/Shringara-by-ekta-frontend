@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login with Google</title>
+  <link rel="stylesheet" href="login.css">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+  <div class="login-container">
+    <div class="logo-container">
+      <img src="ekta_logo-removebg-preview.png" alt="Ekta Logo" class="logo">
+    </div>
+
+    <h1>WELCOME</h1>
+    <p class="subtitle">Sign in to continue to your account</p>
+
+    <div class="social-login">
+      <div id="googleSignInButton"></div>
+    </div>
+
+    <div class="footer">
+      By signing in, you agree to our
+      <a href="#">Terms of Service</a> and
+      <a href="#">Privacy Policy</a>
+    </div>
+
+    <!-- Loading spinner -->
+    <div id="loadingSpinner" class="spinner" style="display: none;"></div>
+
+    <!-- Message container -->
+    <div id="message" class="message" style="display: none;"></div>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>
