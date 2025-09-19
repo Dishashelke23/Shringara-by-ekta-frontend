@@ -25,12 +25,11 @@
       <a href="ecomshop.html">Shop</a>
       <a href="#">About</a>
       <a href="#">Contact</a>
-      
+      <a href="profile.html" id="profile-link">My Account</a>
     </nav>
 
     <!-- Cart always visible -->
     <a href="ecomcart.html" class="cart-link" id="cart-link">🛒 <span id="cart-count">0</span></a>
-
 
     
   </header>
@@ -98,6 +97,14 @@
   hamburger.addEventListener("click", () => {
     navLinks.classList.toggle("show");
   });
+
+  // Check authentication status and update profile link
+  const authToken = localStorage.getItem("authToken");
+  const profileLink = document.getElementById("profile-link");
+  
+  if (authToken && profileLink) {
+    profileLink.style.display = "block";
+  }
 </script>
 
 <!-- Slide Buttons chevrons-->

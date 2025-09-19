@@ -1,13 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-@font-face {
-    font-family: 'myFont';
-    src: url('font/PurelinesBold-JprVE.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-
 :root {
   --orange: #f59e0b;
   --green: #10b981;
@@ -32,80 +24,39 @@ body {
   scroll-behavior: smooth;
 }
 
-
-/* LOADING OVERLAY */
-#loading-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  transition: opacity 0.5s ease;
-}
-
-.loader-content h1 {
-  font-family: 'myFont', serif; 
-  font-size: 3rem;
-  color: #000000; 
-}
-
-
 /* HEADER */
-
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 16px 32px;
   position: sticky;
   top: 0;
   z-index: 1000;
+  height: 100px;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(5px);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
 }
 
-header .title-container {
+header img {
+  height: 150px; 
+}
+
+.logo {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  height: 80px;
-  transition: all 0.3s ease;
-  background: rgb(255, 255, 255);
-  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  gap: 8px;
+  padding-top: 10px;
   
 }
 
-header .top-bar {
-  background: #99c0c7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  top: 0%;
-  z-index: 1000;
-  height: auto;
-}
-
-header .top-bar p {
-  color: white;
-  font-size: 0.9rem;
-  padding: 5px;
-}
 
 .site-title {
-  font-family: 'myFont', sans-serif;
-  font-size: 3rem;
-  font-weight: bolder;
-  color: #000000;
-  margin-left: 50px;
-
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
 }
 
 /* NAVIGATION */
@@ -117,7 +68,7 @@ nav {
 nav a {
   text-decoration: none;
   font-weight: 600;
-  color: #000000;
+  color: #f9fafb;
   position: relative;
   margin: 15px;
 }
@@ -129,7 +80,7 @@ nav a::after {
   height: 2px;
   left: 0;
   bottom: -4px;
-  background: #000000;
+  background: var(--orange);
   transition: width 0.3s;
 }
 
@@ -142,7 +93,8 @@ nav a:hover::after {
   display: none; /* hidden on desktop */
   font-size: 2rem;
   cursor: pointer;
-  color: rgb(0, 0, 0);
+  color: white;
+  margin-left: 2px;
 }
 
 .nav-links {
@@ -152,7 +104,7 @@ nav a:hover::after {
 
 .nav-links a {
   text-decoration: none;
-  color: rgb(0, 0, 0);
+  color: white;
   font-weight: 600;
 }
 
@@ -165,7 +117,7 @@ nav a:hover::after {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: linear-gradient(to right, #99c0c7, #D58A94);
+  background: linear-gradient(to right, var(--orange), var(--accent));
   color: white;
   padding: 40px 20px;
 }
@@ -197,6 +149,7 @@ nav a:hover::after {
   transition: color 0.3s ease;
   z-index: 1;
 }
+
 
 /* Background overlay goes behind text */
 .btn::before {
@@ -370,17 +323,13 @@ footer a {
   color: var(--orange);
 }
 
-
-
-
-
 /* RESPONSIVE */
 @media (max-width: 992px) {
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
   }
   .hero h1 {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
   .hero p {
     font-size: 1rem;
@@ -388,31 +337,21 @@ footer a {
 }
 
 @media (max-width: 768px) {
-
-
-  .loader-content h1 {
-    font-size: 2rem;
-  }
-
   .hamburger {
     display: block; /* show hamburger */
-    margin-left: 10px;
-    
+    margin: 0;
   }
     
-  .site-title {
-    font-size: 2rem;
-    text-align: center;
-    padding-right: 150px;
-    font-weight: bolder;
-    
+  header {
+    padding: 10px 15px; /* Reduced padding for mobile */
+    justify-content: start; /* Ensure space between logo and hamburger */
   }
 
 
   .nav-links {
     display: none; /* hide nav by default */
     flex-direction: column;
-    background: #ffffff;
+    background: #380314;
     position: absolute;
     top: 100px; /* below header */
     right: 0;

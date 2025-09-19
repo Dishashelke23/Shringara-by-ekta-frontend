@@ -61,6 +61,17 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-
+  // Add login check for checkout button if it exists
+  const checkoutBtn = document.querySelector(".checkout-btn");
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener("click", (e) => {
+      const authToken = localStorage.getItem("authToken");
+      if (!authToken) {
+        e.preventDefault();
+        alert("Please login to proceed to checkout");
+        window.location.href = "login.html?redirect=ecomcart.html";
+      }
+    });
+  }
     
 });

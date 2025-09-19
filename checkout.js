@@ -1,3 +1,14 @@
+// ====== Authentication Check ======
+const authToken = localStorage.getItem("authToken");
+const user = JSON.parse(localStorage.getItem("user") || "null");
+
+// Redirect to login if not authenticated
+if (!authToken || !user) {
+  alert("Please login before checkout");
+  window.location.href = "login.html?redirect=checkout.html";
+  throw new Error("User not authenticated");
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const cart = JSON.parse(localStorage.getItem('ekta_cart_v1')) || [];
     const orderItemsContainer = document.getElementById('order-items');
@@ -6,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const loadingOverlay = document.getElementById('loading-overlay');
     
     // ✅ Change this to your deployed backend (Railway/Render) when live
-    const SERVER_URL = 'https://shringara-by-ekta-backend-production.up.railway.app';
+    const SERVER_URL = 'http://localhost:3000';
     
     if (cart.length === 0) {
         orderItemsContainer.innerHTML = '<p>Your cart is empty</p>';
@@ -44,8 +55,24 @@ document.addEventListener('DOMContentLoaded', function() {
         grand: grandTotal
     }));
     
+    // Pre-fill email if user is logged in
+    if (user && user.email) {
+        const emailField = document.getElementById('email');
+        if (emailField && !emailField.value) {
+            emailField.value = user.email;
+        }
+    }
+    
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
+        
+        // Check authentication again before proceeding
+        if (!authToken) {
+            alert("Your session has expired. Please login again.");
+            window.location.href = "login.html?redirect=checkout.html";
+            return;
+        }
+        
         if (!validateForm()) return;
         loadingOverlay.style.display = 'flex';
         
@@ -65,7 +92,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json'
+                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${authToken}`
                 },
                 body: JSON.stringify({
                     amount: grandTotal,
@@ -76,6 +104,14 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             
             if (!response.ok) {
+                if (response.status === 401) {
+                    alert("Your session has expired. Please login again.");
+                    localStorage.removeItem("authToken");
+                    localStorage.removeItem("user");
+                    window.location.href = "login.html?redirect=checkout.html";
+                    return;
+                }
+                
                 const errorData = await response.text();
                 console.error('Server response not OK:', response.status, errorData);
                 throw new Error(`Server responded with ${response.status}: ${errorData}`);

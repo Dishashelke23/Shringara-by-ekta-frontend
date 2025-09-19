@@ -1,6 +1,10 @@
 // ====== Backend URLs ======
-const BACKEND_URL = "https://shringara-by-ekta-backend-production.up.railway.app";
+const BACKEND_URL = "http://localhost:3000/auth/google";
 const GOOGLE_CONFIG_URL = "http://localhost:3000/config/google";
+
+// ====== Get redirect parameter ======
+const urlParams = new URLSearchParams(window.location.search);
+const redirectUrl = urlParams.get('redirect') || 'index.html';
 
 // ====== Initialize Google Sign-In ======
 window.onload = async () => {
@@ -9,7 +13,7 @@ window.onload = async () => {
   // If already logged in, redirect
   const authToken = localStorage.getItem("authToken");
   if (authToken) {
-    window.location.href = "index.html";
+    window.location.href = redirectUrl;
     return;
   }
 
@@ -63,40 +67,20 @@ function handleGoogleSignIn(response) {
     .then(data => {
       if (data.success) {
         // Save login
-        localStorage.setItem("authToken", data.token || "mock-token");
+        localStorage.setItem("authToken", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
 
         showMessage("Login successful! Redirecting...", "success");
-        setTimeout(() => (window.location.href = "index.html"), 1500);
+        setTimeout(() => (window.location.href = redirectUrl), 1500);
       } else {
         showMessage(data.message || "Google sign-in failed", "error");
       }
     })
     .catch(err => {
       console.error("Backend unreachable:", err);
-      simulateSuccessfulLogin(); // fallback if no server
+      showMessage("Cannot connect to server. Please try again later.", "error");
     })
     .finally(() => showLoading(false));
-}
-
-// ====== Fallback Mock Login ======
-function simulateSuccessfulLogin() {
-  showMessage("Connected to Google! Setting up your account...", "success");
-
-  setTimeout(() => {
-    const mockUser = {
-      id: "mock-" + Date.now(),
-      name: "Google User",
-      email: "user@example.com",
-      avatar: "https://via.placeholder.com/150"
-    };
-
-    localStorage.setItem("authToken", "mock-token-" + Date.now());
-    localStorage.setItem("user", JSON.stringify(mockUser));
-
-    showMessage("Login successful! Redirecting...", "success");
-    setTimeout(() => (window.location.href = "index.html"), 2000);
-  }, 1000);
 }
 
 // ====== UI Helpers ======

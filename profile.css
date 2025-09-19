@@ -1,0 +1,171 @@
+.profile-container {
+  display: flex;
+  max-width: 1200px;
+  margin: 2rem auto;
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.profile-sidebar {
+  width: 300px;
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.profile-content {
+  flex: 1;
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.user-info {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.user-info img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.user-info h2 {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+.user-info p {
+  margin: 0;
+  color: #666;
+}
+
+.profile-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-nav a {
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: #333;
+  border-left: 3px solid transparent;
+  transition: all 0.3s;
+}
+
+.profile-nav a:hover,
+.profile-nav a.active {
+  background: #f5f5f5;
+  border-left-color: #F37254;
+  color: #F37254;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.order-card {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-bottom: 1px solid #eee;
+}
+
+.order-status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.order-status.paid,
+.order-status.delivered {
+  background: #e6f4ea;
+  color: #137333;
+}
+
+.order-status.pending {
+  background: #fef7e0;
+  color: #b06000;
+}
+
+.order-status.failed,
+.order-status.cancelled {
+  background: #fce8e6;
+  color: #c5221f;
+}
+
+.order-details {
+  padding: 1rem;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.order-total {
+  text-align: right;
+  font-weight: bold;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 2px solid #eee;
+}
+
+.empty-state,
+.error-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #666;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #F37254;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  margin-top: 1rem;
+}
+
+.btn:hover {
+  background: #e0654a;
+}
+
+@media (max-width: 768px) {
+  .profile-container {
+    flex-direction: column;
+  }
+  
+  .profile-sidebar {
+    width: 100%;
+  }
+  
+  .order-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
