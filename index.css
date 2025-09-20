@@ -413,6 +413,10 @@ footer a:hover {
   color: var(--accent);
 }
 
+
+
+
+
 /* RESPONSIVE DESIGN */
 @media (max-width: 992px) {
   .product-grid {
@@ -445,12 +449,18 @@ footer a:hover {
 @media (max-width: 768px) {
   .hamburger {
     display: block;
+    position: absolute;
+  left: 1rem;   /* adjust as needed */
   }
 
   
   
   header {
     padding: 1rem;
+    display: flex;
+  justify-content: center; /* center all items horizontally */
+  align-items: center;
+  position: relative; 
   }
   
   .nav-links {
@@ -508,7 +518,9 @@ footer a:hover {
 
   .site-title {
     font-size: 2rem;
-    padding-right: 185px;
+    padding: 0;
+  margin: 0;
+  text-align: center;
   }
   
 }
@@ -537,6 +549,7 @@ footer a:hover {
     top: 24px;
     right: 30px; /* next to hamburger */
     z-index: 1200;
+    
   }
 
   .mobile-profile a:visited,
