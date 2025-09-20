@@ -1,81 +1,92 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 
 :root {
-  --orange: #f59e0b;
-  --green: #10b981;
-  --white: #ffffff;
-  --gray: #f9fafb;
-  --text: #1f2937;
-  --accent: #6366f1; 
+  --primary: #c7c0b9; /* R:199,G:192,B:185 */
+  --secondary: #ffffff; /* R:255,G:255,B:255 */
+  --tertiary: #ece7e4; /* R:236,G:231,B:228 */
+  --text: #333333;
+  --text-light: #666666;
+  --border: #e0e0e0;
+  --accent: #333333;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 8rem;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 body {
-  background: #380314;
+  background: var(--secondary);
+  color: var(--text);
+  line-height: 1.6;
+  font-weight: 400;
 }
 
-/* Header */
+/* Header - Clean Everlane Style */
 header {
-  background: rgba(255, 255, 255, 0);
-  backdrop-filter: blur(1px);
+  background: var(--secondary);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 32px;
+  padding: 1.5rem 2rem;
   position: sticky;
   top: 0;
   z-index: 1000;
-  height: 100px;
-  transition: all 0.3s ease;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+  border-bottom: 1px solid var(--border);
+  height: auto;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding-top: 10px;
+  gap: 0.75rem;
 }
 
 .site-title {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text);
+  letter-spacing: -0.5px;
 }
-
 
 header img {
-  height: 150px;
+  height: 40px;
 }
 
-/* Navigation */
+/* Navigation - Clean Minimalist */
 .nav-links {
   display: flex;
-  gap: 20px;
-  
+  gap: 2rem;
 }
 
 .nav-links a {
   text-decoration: none;
-  color: #f9fafb;
-  font-weight: 600;
+  color: var(--text);
+  font-weight: 400;
+  font-size: 0.9rem;
   position: relative;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
 }
 
 .nav-links a::after {
   content: "";
   position: absolute;
   width: 0%;
-  height: 2px;
+  height: 1px;
   left: 0;
   bottom: -4px;
-  background: var(--orange);
+  background: var(--text);
   transition: width 0.3s;
 }
 
@@ -83,204 +94,262 @@ header img {
   width: 100%;
 }
 
-/* Cart link (always visible) */
+/* Cart link */
 .cart-link {
-  font-size: 1.5rem;
-  color: #fff;
-  margin-left: 10px;
+  font-size: 1.2rem;
+  color: var(--text);
   position: relative;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.cart-link:hover {
+  color: var(--accent);
 }
 
 #cart-count {
-  background: red;
-  color: white;
-  padding: 2px 5px;
+  background: var(--text);
+  color: var(--secondary);
+  padding: 0.2rem 0.5rem;
   border-radius: 50%;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   position: absolute;
   top: -8px;
   right: -10px;
 }
 
-.cart-link::after {
-  content: "";
-  position: absolute;
-  width: 0%;
-  height: 2px;
-  left: 0;
-  bottom: -4px;
-  background: var(--orange);
-  transition: width 0.3s;
-}
-
-.cart-link:hover::after {
-  width: 100%;
-}
-
 /* Hamburger */
 .hamburger {
   display: none;
-  font-size: 2rem;
+  font-size: 1.5rem;
   cursor: pointer;
-  color: white;
+  color: var(--text);
 }
 
-/* Shop Section */
+/* Shop Section - Clean Everlane Style */
 .shop {
-  padding: 50px 20px;
-  background: #f9f9f9;
+  padding: var(--spacing-xl) var(--spacing-sm);
+  background: var(--secondary);
   text-align: center;
 }
 
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 in row */
-  gap: 20px;
-  margin-top: 20px;
+.shop h2 {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  letter-spacing: -0.5px;
+}
+
+.shop p {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  margin-bottom: var(--spacing-lg);
+  font-weight: 400;
 }
 
 .product-slider {
   position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .slide-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: white;
-  border: none;
-  border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  border-radius: 0;
   width: 40px;
   height: 40px;
   cursor: pointer;
   z-index: 10;
-  font-size: 1.5rem;
-  color: #333;
+  font-size: 1rem;
+  color: var(--text);
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .slide-btn:hover {
-  background: var(--accent);
-  color: white;
+  background: var(--text);
+  color: var(--secondary);
+  border-color: var(--text);
 }
 
 .slide-btn.left {
-  left: 10px;
+  left: -20px;
 }
 
 .slide-btn.right {
-  right: 10px;
+  right: -20px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
 }
 
 .product-card {
-  background: white;
-  padding: 10px;
-  border-radius: 10px;
-  height: 700px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  cursor: pointer;
+  background: var(--secondary);
+  padding: 0;
+  text-align: center;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
 }
 
 .product-card img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  transition: opacity 0.3s ease;
 }
 
-/*button 2*/
+.product-card:hover img {
+  opacity: 0.9;
+}
 
+.product-card h3 {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  padding: 0 1rem;
+}
+
+.product-card p {
+  font-size: 1rem;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+  padding: 0 1rem;
+}
+
+/* Button - Clean Everlane Style */
 .btn2 {
-  position: relative;
   display: inline-block;
   background: transparent;
-  color: white;
-  padding: 0.5rem 1rem;
-  border: 2px solid var(--accent);
-  font-size: 1rem;
+  color: var(--text);
+  padding: 0.9rem 1.8rem;
+  border: 1px solid var(--text);
+  font-size: 0.9rem;
   cursor: pointer;
-  border-radius: 5px;
   text-decoration: none;
-  overflow: hidden;
-  transition: color 0.3s ease;
-  z-index: 1;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  font-weight: 400;
+  margin-top: auto;
+  margin-bottom: 1.5rem;
+  align-self: center;
 }
 
-/* Background overlay goes behind text */
-.btn2::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--accent);
-  z-index: -1;   /* sits behind text */
-  transition: width 0.5s ease;
-}
-
-/* Hover: background wipes away */
 .btn2:hover {
-  color: var(--accent);
+  background: var(--text);
+  color: var(--secondary);
 }
 
-.btn2:hover::before {
-  width: 0;   /* shrink background */
-  left: auto;
-  right: 0;   /* makes it wipe left → right */
+/* Responsive Design */
+@media (max-width: 992px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .slide-btn.left {
+    left: 10px;
+  }
+  
+  .slide-btn.right {
+    right: 10px;
+  }
 }
 
-
-/* Responsive */
 @media (max-width: 768px) {
   .hamburger {
-    display: block; /* show hamburger */
-    margin: 0;
+    display: block;
   }
-    
+  
   header {
-    padding: 10px 15px; /* Reduced padding for mobile */
-    justify-content: start; /* Ensure space between logo and hamburger */
+    padding: 1rem;
   }
-
+  
   .nav-links {
     display: none;
     flex-direction: column;
-    background: #380314;
+    background: var(--secondary);
     position: absolute;
-    top: 100px;
+    top: 70px;
+    left: 0;
     right: 0;
-    width: 100%;
-    padding: 20px;
-    text-align: center;
+    padding: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid var(--border);
   }
-
+  
   .nav-links.show {
     display: flex;
   }
-
-  /* Product Grid becomes scrollable row */
+  
+  .nav-links a {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .nav-links a:last-child {
+    border-bottom: none;
+  }
+  
+  .shop {
+    padding: var(--spacing-lg) var(--spacing-sm);
+  }
+  
   .product-grid {
-    display: flex;                /* switch to flex row */
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .slide-btn {
+    display: none;
+  }
+  
+  /* Product Grid becomes scrollable row on mobile */
+  .product-grid {
+    display: flex;
     gap: 1rem;
-    overflow-x: auto;             /* enable horizontal scroll */
+    overflow-x: auto;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch; /* smooth scroll */
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 1rem;
   }
 
   .product-card {
-    flex: 0 0 80%;                /* ~80% width of screen */
+    flex: 0 0 80%;
     scroll-snap-align: start;
-    height: auto;                 /* allow natural height */
+    height: auto;
   }
 
   /* Hide scrollbar */
   .product-grid::-webkit-scrollbar {
     display: none;
   }
+  
   .product-grid {
-    -ms-overflow-style: none;  /* IE/Edge */
-    scrollbar-width: none;     /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
+}
+
+/* Draggable slider enhancements */
+.product-grid {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.product-grid.active {
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
 }
