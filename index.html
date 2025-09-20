@@ -3,19 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shriṅgāra by Ekta</title>
+  <title>Ishara</title>
   <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <!-- Favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="logo.png">
+<link rel="apple-touch-icon" sizes="180x180" href="logo.png">
+<link rel="icon" type="image/x-icon" href="logo.png">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://theektaproject.org",
+  "@type": "Organization",
+  "name": "Ishara",
+  "url": "https://www.theektaproject.org",  
+  "logo": "https://www.theektaproject.org/logo.png",
+  "sameAs": [
+    "https://www.instagram.com/theektaproject?utm_source=ig_web_button_share_sheet&igsh=YXllMm43OHBmc2J3",
+    
+  ]
+}
+</script>
+
+
 </head>
 <body>
+
+  <!--Top bar-->
+<div class="top-bar">
+  <p>FREE SHIPPING on orders above ₹999</p>
+</div>
+
 
 <header>
 
  <!-- Hamburger Menu (for mobile) -->
+  
   <div class="hamburger">☰</div>
 
-  <div class="logo">
-    <img src="Ekta white logo.png" alt="Ekta Logo">
-    <h1 class="site-title">Shriṅgāra</h1>
+  <div class="name">
+    <h1 class="site-title">Ishara</h1>
+  </div>
+
+  <!-- Profile icon for mobile -->
+  <div class="mobile-profile">
+    <a href="./profile.html">
+        <i class="bi bi-person-circle"></i>
+    </a>
   </div>
 
   <!-- Navigation -->
@@ -23,15 +59,24 @@
     <a href="index.html">Home</a>
     <a href="ecomshop.html">Shop</a>
     <a href="#">About</a>
-    <a href="#">Contact</a>
-    <a href="./profile.html">My Profile</a>
+    <a href="./profile.html" class="desktop-profile">My Profile</a>
   </nav>
 
  
 </header>
 
+
+
 <!-- Hero Section -->
 <section class="hero">
+
+<div class="hero-video-wrapper">
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="856434-hd_1920_1080_25fps.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+
   <div class="hero-content">
     <h1>Crafted with Care. Empowering Lives.</h1>
     <p>Every purchase supports families in need through Ekta NGO.</p>
@@ -39,17 +84,11 @@
   </div>
 </section>
 
-<!-- About -->
-<section class="about">
-  <h2>About Us</h2>
-  <p>Ekta is a non-profit organization dedicated to empowering marginalized communities through sustainable livelihoods. Our beautifully crafted kurtis are made by skilled artisans, ensuring fair wages and preserving cultural heritage.</p>
-  <br>
-  <a href="index.html" class="btn">Learn More</a>
-</section>
+
 
 <!-- Featured Products -->
 <section class="products">
-  <h2 style="text-align:center; margin-bottom:2rem;">Featured Products</h2>
+  <h2 style="text-align:center; margin-bottom:2rem;">Get Dolled Up ASAP</h2>
 
   <div class="product-slider">
 <button class="slide-btn left">&#10094;</button>
@@ -97,6 +136,8 @@
 
 </section>
 
+
+
 <!-- Impact -->
 <section class="impact">
   <p>With every product sold, you help provide fair wages and sustainable income for artisans in need.</p>
@@ -104,8 +145,7 @@
 
 <!-- Footer -->
 <footer>
-  <p>&copy; 2025 The Ekta Project. All Rights Reserved. | 
-     <a href="#">Visit Main NGO Website</a></p>
+  <p>&copy; 2025 The Ekta Project. All Rights Reserved.</p>
 </footer>
 
 
@@ -130,19 +170,19 @@
   slider.addEventListener('mousedown', (e) => {
     isDown = true;
     slider.classList.add('active');
-    slider.style.cursor = "grabbing";
+    slider.style.cursor = "pointer";
     startX = e.pageX - slider.offsetLeft;
     scrollLeft = slider.scrollLeft;
   });
 
   slider.addEventListener('mouseleave', () => {
     isDown = false;
-    slider.style.cursor = "grab";
+    slider.style.cursor = "pointer";
   });
 
   slider.addEventListener('mouseup', () => {
     isDown = false;
-    slider.style.cursor = "grab";
+    slider.style.cursor = "pointer";
   });
 
   slider.addEventListener('mousemove', (e) => {
@@ -172,6 +212,7 @@
     productGrid.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
   });
 </script>
+
 
 <script src="index.js"></script>
 
