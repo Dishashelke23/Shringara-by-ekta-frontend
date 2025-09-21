@@ -60,14 +60,23 @@
     <a href="index.html">Home</a>
     <a href="ecomshop.html">Shop</a>
     <a href="#">About</a>
-    <a href="./profile.html" class="desktop-profile">My Profile</a>
+
+    <!-- Desktop profile icon -->
+    <div class="desktop-profile-icon">
+      <a href="./profile.html">
+        <i class="bi bi-person-circle"></i>
+      </a>
+    </div>
   </nav>
 
  
 </header>
 
+<!--menu overlay for blur effect-->
+<div class="menu-overlay"></div>
 
 
+<main>
 <!-- Hero Section -->
 <section class="hero">
 
@@ -136,7 +145,7 @@
   </div>
 
 </section>
-
+</main>
 
 
 <!-- Impact -->
@@ -148,72 +157,6 @@
 <footer>
   <p>&copy; 2025 The Ekta Project. All Rights Reserved.</p>
 </footer>
-
-
-  <!-- Toggle Mobile Menu -->
-<script>
-  const hamburger = document.querySelector(".hamburger");
-  const navLinks = document.querySelector(".nav-links");
-
-  hamburger.addEventListener("click", () => {
-    navLinks.classList.toggle("show");
-  });
-</script>
-
-
-<!--draggable sliding-->
-<script>
-  const slider = document.querySelector('.product-grid');
-  let isDown = false;
-  let startX;
-  let scrollLeft;
-
-  slider.addEventListener('mousedown', (e) => {
-    isDown = true;
-    slider.classList.add('active');
-    slider.style.cursor = "pointer";
-    startX = e.pageX - slider.offsetLeft;
-    scrollLeft = slider.scrollLeft;
-  });
-
-  slider.addEventListener('mouseleave', () => {
-    isDown = false;
-    slider.style.cursor = "pointer";
-  });
-
-  slider.addEventListener('mouseup', () => {
-    isDown = false;
-    slider.style.cursor = "pointer";
-  });
-
-  slider.addEventListener('mousemove', (e) => {
-    if(!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - slider.offsetLeft;
-    const walk = (x - startX) * 2; // adjust multiplier for speed
-    slider.scrollLeft = scrollLeft - walk;
-  });
-</script>
-
-
-<!-- Slide Buttons chevrons-->
-<script>
-  const productGrid = document.querySelector('.product-grid');
-  const leftBtn = document.querySelector('.slide-btn.left');
-  const rightBtn = document.querySelector('.slide-btn.right');
-
-  
-  const scrollAmount = document.querySelector('.product-card').offsetWidth + 20;
-
-  rightBtn.addEventListener('click', () => {
-    productGrid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-  });
-
-  leftBtn.addEventListener('click', () => {
-    productGrid.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-  });
-</script>
-
 
 <script src="index.js"></script>
 
