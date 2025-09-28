@@ -1,3 +1,9 @@
+// Mobile Menu Functionality with smooth animations
+const hamburger = document.querySelector(".hamburger");
+const navLinks = document.querySelector(".nav-links");
+const menuOverlay = document.querySelector(".menu-overlay");
+let menuClose = document.querySelector(".menu-close");
+
 document.addEventListener("DOMContentLoaded", () => {
   const STORAGE_KEY = "ekta_cart_v1";
   const cartCount = document.getElementById("cart-count");
@@ -5,6 +11,67 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let cart = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
   updateCartCount();
+
+  
+
+// Create close button if it doesn't exist
+if (!menuClose && navLinks) {
+  const closeBtn = document.createElement("div");
+  closeBtn.className = "menu-close";
+  closeBtn.innerHTML = "✕";
+  navLinks.prepend(closeBtn);
+  menuClose = closeBtn;
+  
+  closeBtn.addEventListener("click", closeMenu);
+}
+
+if (hamburger && navLinks && menuOverlay) {
+  hamburger.addEventListener("click", toggleMenu);
+  
+  // Close menu when clicking on overlay
+  menuOverlay.addEventListener("click", closeMenu);
+  
+  // Close menu when clicking on a link
+  document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", closeMenu);
+  });
+  
+  // Close menu when pressing Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && navLinks.classList.contains("show")) {
+      closeMenu();
+    }
+  });
+}
+
+function toggleMenu() {
+  if (navLinks.classList.contains("show")) {
+    closeMenu();
+  } else {
+    openMenu();
+  }
+}
+
+function openMenu() {
+  navLinks.classList.add("show");
+  menuOverlay.classList.add("active");
+  document.body.classList.add("menu-open");
+  hamburger.classList.add("active");
+  document.body.style.overflow = "hidden";
+}
+
+function closeMenu() {
+  navLinks.classList.remove("show");
+  menuOverlay.classList.remove("active");
+  document.body.classList.remove("menu-open");
+  hamburger.classList.remove("active");
+  
+  setTimeout(() => {
+    document.body.style.overflow = "";
+  }, 500);
+}
+
+
 
   // Add-to-cart buttons (if you add them later)
   document.querySelectorAll(".product-card button").forEach(btn => {

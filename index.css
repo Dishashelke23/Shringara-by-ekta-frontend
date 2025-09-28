@@ -85,14 +85,14 @@ header img {
 
 .site-title {
   font-family: 'Choco', sans-serif;
-  font-size: 2.5rem;
+  font-size: 1rem;
   font-weight: bold;
   color: var(--text);
   letter-spacing: 1px;
   padding-left: 50px;
 }
 
-/* NAVIGATION - Fixed for desktop view */
+/* NAVIGATION*/
 nav {
   display: flex;
   gap: 2rem;
@@ -145,20 +145,7 @@ nav a:hover::after {
   color: var(--accent);
 }
 
-/* NAV LINKS - Desktop styles */
-.nav-links {
-  display: flex;
-  flex-direction: row;
-  position: static;
-  width: auto;
-  height: auto;
-  padding: 0;
-  box-shadow: none;
-  transform: none;
-  background: transparent;
-  overflow: visible;
-  visibility: visible;
-}
+
 
 /* Hamburger (hidden on desktop) */
 .hamburger {
@@ -284,7 +271,7 @@ body.menu-open main {
 
 
 
-/* HERO - Everlane Minimalist Style */
+/* HERO */
 .hero {
   height: 80vh;
   display: flex;
@@ -395,7 +382,7 @@ body.menu-open main {
   color: var(--secondary);
 }
 
-/* ABOUT - Clean Section */
+/* ABOUT */
 .about {
   padding: var(--spacing-xl) var(--spacing-sm);
   text-align: center;

@@ -3,20 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shriṅgāra by Ekta</title>
+  <title>Ishara</title>
   <link rel="stylesheet" href="ecomshop.css" />
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <!-- Favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="logo.png">
+<link rel="apple-touch-icon" sizes="180x180" href="logo.png">
+<link rel="icon" type="image/x-icon" href="logo.png">
 </head>
 <body>
 
   <!-- Header -->
   <header>
 
-<!-- Hamburger (for mobile) -->
+    <!-- Hamburger (for mobile) -->
     <div class="hamburger">☰</div>
 
-    <div class="logo">
-      <img src="Ekta white logo.png" alt="Ekta Logo">
-      <h1 class="site-title">Shriṅgāra</h1>
+    <div class="name">
+      <h1 class="site-title">Ishara</h1>
     </div>
 
     <!-- Navigation -->
@@ -33,6 +38,9 @@
 
     
   </header>
+
+  <!-- Menu overlay for blur effect -->
+  <div class="menu-overlay"></div>
 
   <!-- Shop Section -->
   <section id="shop" class="shop">
@@ -90,13 +98,68 @@
 
 
 <script>
-  // Toggle Mobile Menu
+  // Mobile Menu Functionality with smooth animations
   const hamburger = document.querySelector(".hamburger");
   const navLinks = document.querySelector(".nav-links");
+  const menuOverlay = document.querySelector(".menu-overlay");
+  let menuClose = document.querySelector(".menu-close");
 
-  hamburger.addEventListener("click", () => {
-    navLinks.classList.toggle("show");
-  });
+  // Create close button if it doesn't exist
+  if (!menuClose && navLinks) {
+    const closeBtn = document.createElement("div");
+    closeBtn.className = "menu-close";
+    closeBtn.innerHTML = "✕";
+    navLinks.prepend(closeBtn);
+    menuClose = closeBtn;
+    
+    closeBtn.addEventListener("click", closeMenu);
+  }
+
+  if (hamburger && navLinks && menuOverlay) {
+    hamburger.addEventListener("click", toggleMenu);
+    
+    // Close menu when clicking on overlay
+    menuOverlay.addEventListener("click", closeMenu);
+    
+    // Close menu when clicking on a link
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", closeMenu);
+    });
+    
+    // Close menu when pressing Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && navLinks.classList.contains("show")) {
+        closeMenu();
+      }
+    });
+  }
+
+  function toggleMenu() {
+    if (navLinks.classList.contains("show")) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  }
+
+  function openMenu() {
+    navLinks.classList.add("show");
+    menuOverlay.classList.add("active");
+    document.body.classList.add("menu-open");
+    hamburger.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeMenu() {
+    navLinks.classList.remove("show");
+    menuOverlay.classList.remove("active");
+    document.body.classList.remove("menu-open");
+    hamburger.classList.remove("active");
+    
+    setTimeout(() => {
+      document.body.style.overflow = "";
+    }, 500);
+  }
 
   // Check authentication status and update profile link
   const authToken = localStorage.getItem("authToken");
