@@ -15,13 +15,6 @@
   --spacing-xl: 8rem;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-}
-
 @font-face { 
   font-family: 'Choco'; 
   src: url('font/Choco-Zp7X3.ttf') format('truetype');
@@ -29,22 +22,39 @@
   font-style: normal;
 }
 
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
 body {
-   font-family: 'Inter', sans-serif;
   background: var(--secondary);
   color: var(--text);
   line-height: 1.6;
-  scroll-behavior: smooth;
   font-weight: 400;
 }
 
-/* Header */
+/* Top bar */
+.top-bar{
+  position: relative;
+  background: var(--primary);
+  color: var(--secondary);
+  text-align: center;
+  padding: 0.5rem 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Header*/
 header {
   background: var(--secondary);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2rem;
+  padding: 0.8rem;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -52,14 +62,14 @@ header {
   height: auto;
 }
 
-.name {
+.logo {
   display: flex;
   align-items: center;
   gap: 0.75rem;
 }
 
 .site-title {
-   font-family: 'Choco', sans-serif;
+  font-family: 'Choco', sans-serif;
   font-size: 2.5rem;
   font-weight: bold;
   color: var(--text);
@@ -71,7 +81,7 @@ header img {
   height: 40px;
 }
 
-/* Navigation */
+/* Navigation - Clean Minimalist */
 .nav-links {
   display: flex;
   gap: 2rem;
@@ -175,6 +185,7 @@ header img {
     display: block;
     position: absolute;
     left: 1rem;
+    z-index: 1002;
   }
   
   header {
@@ -183,6 +194,34 @@ header img {
     justify-content: center;
     align-items: center;
     position: relative;
+    height: 70px;
+  }
+  
+  .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .logo img {
+    display: none;
+  }
+  
+  .site-title {
+    font-size: 2rem;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .cart-link {
+    position: absolute;
+    right: 1rem;
+    z-index: 1002;
   }
   
   .nav-links {
@@ -245,6 +284,7 @@ header img {
     opacity: 0;
     transform: rotate(-90deg);
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 1001;
   }
   
   .nav-links.show .menu-close {
@@ -252,14 +292,6 @@ header img {
     transform: rotate(0deg);
     transition-delay: 0.35s;
   }
-
-.cart-link {
-    font-size: 1.3rem;
-    top: 5px;
-    left: 150px;
-  }
-
-
 }
 
 /* Blur effect for content when menu is open */
@@ -301,7 +333,7 @@ body.menu-open main {
   }
 }
 
-/* Shop Section */
+/* Shop Section - Clean Everlane Style */
 .shop {
   padding: var(--spacing-xl) var(--spacing-sm);
   background: var(--secondary);
@@ -403,7 +435,7 @@ body.menu-open main {
   padding: 0 1rem;
 }
 
-/* Button */
+/* Button - Clean Everlane Style */
 .btn2 {
   display: inline-block;
   background: transparent;
@@ -454,13 +486,6 @@ body.menu-open main {
   
   .slide-btn {
     display: none;
-  }
-
-  .site-title {
-    font-size: 2rem;
-    padding: 0;
-    margin: 0;
-    text-align: center;
   }
   
   /* Product Grid becomes scrollable row on mobile */
