@@ -52,50 +52,66 @@
     <h2>Our Products</h2>
     <p>Explore our exclusive range of handcrafted kurtis, each piece telling a story of the artisan.</p>
 
-<div class="product-slider">
-<button class="slide-btn left">&#10094;</button>
    
-<div class="product-grid">
+<div class="product-container">
 
   
-   <div class="product-card"
-     data-name="Halter Neck Kurti Top"
-     data-price="1500"
-     data-description="Beautifully handwoven rug made by local artisans."
-     data-images='["images/product1.png","images/product2.png","images/product3.png"]'>
+    <div class="product-card"
+      data-name="Halter Neck Kurti Top"
+      data-price="1500"
+      data-description="Beautifully designed halter-neck kurti top with premium fabric and artisanal embroidery."
+      data-images='["images/product1.png","images/product2.png","images/product3.png"]'>
       <img src="images/product1.png" alt="Halter Neck Kurti Top" />
-      <h3>Halter Neck Kurti Top</h3>
+      <h3>HALTER NECK KURTI TOP</h3>
       <p>₹1500</p>
-      <a href="product.html" class="btn2">Buy Now</a>
+      <a href="product.html" class="btn2">Add to Cart</a>
     </div>
 
-      <div class="product-card"
-     data-name="Noodle Strap Corset Kurti"
-     data-price="1500"
-     data-description="Beautifully handwoven rug made by local artisans."
-     data-images='["images/product2.png","images/product3.png","images/product1.png"]'>
+    <div class="product-card"
+      data-name="Noodle Strap Corset Kurti"
+      data-price="1500"
+      data-description="A modern noodle-strap kurti with a flattering corset fit, handcrafted by local artisans."
+      data-images='["images/product2.png","images/product3.png","images/product1.png"]'>
       <img src="images/product2.png" alt="Noodle Strap Corset Kurti" />
-      <h3>Noodle Strap Corset Kurti</h3>
+      <h3>NOODLE STRAP CORSET KURTI</h3>
       <p>₹1500</p>
-      <a href="product.html" class="btn2">Buy Now</a>
+      <a href="product.html" class="btn2">Add to Cart</a>
     </div>
 
-      <div class="product-card"
-     data-name="Deep Back Kurti"
-     data-price="2500"
-     data-description="Beautifully handwoven rug made by local artisans."
-     data-images='["images/product3.png","images/product2.png","images/product1.png"]'>
+    <div class="product-card"
+      data-name="Deep Back Kurti"
+      data-price="2500"
+      data-description="Elegant deep-back kurti with handwoven details, perfect for festive and casual wear."
+      data-images='["images/product3.png","images/product2.png","images/product1.png"]'>
       <img src="images/product3.png" alt="Deep Back Kurti" />
-      <h3>Deep Back Kurti</h3>
-      <p>₹1500</p>
-      <a href="product.html" class="btn2">Buy Now</a>
+      <h3>DEEP BACK KURTI</h3>
+      <p>₹2500</p>
+      <a href="product.html" class="btn2">Add to Cart</a>
     </div>
 
-        
-    <button class="slide-btn right">&#10095;</button>
-</div>
+    <div class="product-card"
+      data-name="Floral Cotton Kurti"
+      data-price="1800"
+      data-description="Soft cotton kurti with hand-printed floral patterns for everyday comfort."
+      data-images='["images/product4.png","images/product5.png","images/product1.png"]'>
+      <img src="images/product3.png" alt="Floral Cotton Kurti" />
+      <h3>FLORAL COTTON KURTI</h3>
+      <p>₹1800</p>
+      <a href="product.html" class="btn2">Add to Cart</a>
+    </div>
 
-  </section>
+    <div class="product-card"
+      data-name="Classic White Kurti"
+      data-price="2000"
+      data-description="Timeless white kurti featuring clean lines and minimalist embroidery."
+      data-images='["images/product5.png","images/product4.png","images/product2.png"]'>
+      <img src="images/product2.png" alt="Classic White Kurti" />
+      <h3>CLASSIC WHITE KURTI</h3>
+      <p>₹2000</p>
+      <a href="product.html" class="btn2">Add to Cart</a>
+    </div>
+  </div>
+</section>
 
   
 
@@ -175,23 +191,7 @@
   }
 </script>
 
-<!-- Slide Buttons chevrons-->
-<script>
-  const productGrid = document.querySelector('.product-grid');
-  const leftBtn = document.querySelector('.slide-btn.left');
-  const rightBtn = document.querySelector('.slide-btn.right');
 
-  
-  const scrollAmount = document.querySelector('.product-card').offsetWidth + 20;
-
-  rightBtn.addEventListener('click', () => {
-    productGrid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-  });
-
-  leftBtn.addEventListener('click', () => {
-    productGrid.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-  });
-</script>
 
 </body>
 </html>

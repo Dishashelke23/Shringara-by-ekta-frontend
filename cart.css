@@ -22,7 +22,7 @@
 }
 
 body {
-   font-family: 'Inter', sans-serif;
+  font-family: 'Inter', sans-serif;
   background: var(--secondary);
   color: var(--text);
   line-height: 1.6;
@@ -30,6 +30,7 @@ body {
   font-weight: 400;
 }
 
+/* ---------- HEADER ---------- */
 .site-header {
   display: flex;
   justify-content: space-between;
@@ -59,6 +60,7 @@ body {
   letter-spacing: -0.5px;
 }
 
+/* ---------- CONTAINER ---------- */
 .container {
   max-width: 1000px;
   margin: 40px auto;
@@ -73,6 +75,7 @@ body {
   border: 1px solid var(--border);
 }
 
+/* ---------- HEADER SECTION ---------- */
 .invoice-header {
   display: flex;
   justify-content: space-between;
@@ -111,18 +114,20 @@ body {
   font-size: 14px;
 }
 
+/* ---------- TABLE STYLING ---------- */
 .invoice-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
 }
 
-.invoice-table th, 
+.invoice-table th,
 .invoice-table td {
   padding: 16px 12px;
   border-bottom: 1px solid var(--border);
   text-align: left;
   font-size: 15px;
+  vertical-align: middle;
 }
 
 .invoice-table thead th {
@@ -144,6 +149,7 @@ body {
   padding-top: 20px;
 }
 
+/* ---------- ACTION BUTTONS ---------- */
 .invoice-actions {
   display: flex;
   justify-content: flex-end;
@@ -185,6 +191,7 @@ body {
   text-align: center;
 }
 
+/* ---------- REMOVE BUTTON ---------- */
 .remove-btn {
   background-color: transparent;
   color: var(--muted);
@@ -201,52 +208,84 @@ body {
   color: var(--error);
 }
 
+/* ---------- MOBILE VIEW FIX ---------- */
 @media (max-width: 720px) {
+
+.container {
+    padding: 0 10px; /* prevent table from touching edges */
+    overflow-x: hidden;
+  }
+
+   .invoice-box {
+    padding: 20px 10px; /* tighter padding for small screens */
+  }
+
+  /* Stack header details */
   .invoice-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 15px;
   }
-  
+
   .invoice-meta {
     text-align: left;
   }
-  
-  .invoice-table th, 
-  .invoice-table td {
-    padding: 12px 8px;
+
+  /* Keep table headers visible and aligned with data */
+  .invoice-table {
+    border: 1px solid var(--border);
+    
   }
-  
+
   .invoice-table thead {
-    display: none;
+    display: table-header-group; /* Ensure headers stay visible */
   }
-  
+
   .invoice-table tr {
-    display: block;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
+    display: table-row;
     border-bottom: 1px solid var(--border);
   }
-  
+
+  .invoice-table th,
   .invoice-table td {
+    display: table-cell;
+    text-align: left;
+    padding: 12px 8px;
+    vertical-align: middle;
+    box-sizing: border-box;
+  }
+
+  /* Fix alignment for product image + text */
+  .invoice-table td[data-label="Product"] {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 8px 0;
-    border-bottom: none;
+    justify-content: flex-start !important;
+    gap: 10px;
   }
-  
-  .invoice-table td::before {
-    content: attr(data-label);
-    font-weight: 500;
-    color: var(--muted);
-    font-size: 13px;
+
+  .invoice-table td[data-label="Product"] img {
+    width: 70px;
+    height: auto;
+    border-radius: 6px;
+    flex-shrink: 0;
   }
-  
+
+  .invoice-table td[data-label="Product"] span,
+  .invoice-table td[data-label="Product"] div,
+  .invoice-table td[data-label="Product"] p {
+    text-align: left;
+  }
+
+  /* Ensure other columns don’t misalign */
+  .invoice-table td {
+    justify-content: flex-start !important;
+  }
+
+  /* Buttons in mobile stacked neatly */
   .invoice-actions {
     flex-direction: column;
   }
-  
+
   .btn {
     width: 100%;
   }
