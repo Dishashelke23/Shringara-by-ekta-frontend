@@ -1,13 +1,5 @@
-// ====== Authentication Check ======
-const authToken = localStorage.getItem("authToken");
-const user = JSON.parse(localStorage.getItem("user") || "null");
-
-// Redirect to login if not authenticated
-if (!authToken || !user) {
-  alert("Please login before checkout");
-  window.location.href = "login.html?redirect=checkout.html";
-  throw new Error("User not authenticated");
-}
+// ====== No Authentication Required ======
+// Guest users can checkout without login
 
 document.addEventListener('DOMContentLoaded', function() {
     const cart = JSON.parse(localStorage.getItem('ekta_cart_v1')) || [];
@@ -55,7 +47,8 @@ document.addEventListener('DOMContentLoaded', function() {
         grand: grandTotal
     }));
     
-    // Pre-fill email if user is logged in
+    // Optional: Pre-fill email if user is logged in
+    const user = JSON.parse(localStorage.getItem("user") || "null");
     if (user && user.email) {
         const emailField = document.getElementById('email');
         if (emailField && !emailField.value) {
@@ -65,13 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
-        
-        // Check authentication again before proceeding
-        if (!authToken) {
-            alert("Your session has expired. Please login again.");
-            window.location.href = "login.html?redirect=checkout.html";
-            return;
-        }
         
         if (!validateForm()) return;
         loadingOverlay.style.display = 'flex';
@@ -92,8 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'Authorization': `Bearer ${authToken}`
+                    'Accept': 'application/json'
                 },
                 body: JSON.stringify({
                     amount: grandTotal,
@@ -104,14 +89,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             
             if (!response.ok) {
-                if (response.status === 401) {
-                    alert("Your session has expired. Please login again.");
-                    localStorage.removeItem("authToken");
-                    localStorage.removeItem("user");
-                    window.location.href = "login.html?redirect=checkout.html";
-                    return;
-                }
-                
                 const errorData = await response.text();
                 console.error('Server response not OK:', response.status, errorData);
                 throw new Error(`Server responded with ${response.status}: ${errorData}`);

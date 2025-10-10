@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Ishara by Ekta</title>
+  <link rel="stylesheet" href="about.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top bar -->
+  <div class="top-bar">
+    <p>FREE SHIPPING on orders above ₹999</p>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="name">
+      <h1 class="site-title">Ishara</h1>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="ecomshop.html">Shop</a>
+      <a href="about.html" class="active">About</a>
+      <a href="ecomcart.html">Cart</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="about-hero">
+    <div class="hero-content">
+      <h1>More Than Fashion.</h1>
+      <p>We’re a movement weaving sustainability, artistry, and empowerment into every thread.</p>
+    </div>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="mission">
+    <div class="mission-content">
+      <h2>Our Story</h2>
+      <p>Ishara by Ekta began as a vision — to celebrate handcrafted Indian textiles while empowering local artisans in Pune. Every kurti, every thread carries a story of resilience, creativity, and hope. Our collections are sustainably made and ethically sourced, ensuring beauty never comes at the cost of humanity or nature.</p>
+    </div>
+  </section>
+
+ 
+
+
+  <!-- Instagram Reel Showcase -->
+<section class="reel-showcase">
+  <h2>From Our Instagram</h2>
+  <p>Peek behind the scenes of Ishara — where art, fabric, and passion meet.</p>
+
+  <div class="reel-container">
+    <!-- Reel 1 -->
+    <div class="reel-frame" onclick="openReel('https:https://www.instagram.com/reel/DJe7OnhNKn-/?utm_source=ig_web_copy_link&igsh=dW9jdnp1bHJiMzN5')">
+      <video autoplay muted loop playsinline>
+        <source src="Video-842.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <!-- Reel 2 -->
+    <div class="reel-frame" onclick="openReel('https:https://www.instagram.com/reel/DCZrgA8oGje/?utm_source=ig_web_copy_link&igsh=MWl1N2dmNzU0emp3bw==')">
+      <video autoplay muted loop playsinline>
+        <source src="Video-731.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <!-- Reel 3 -->
+    <div class="reel-frame" onclick="openReel('https:https://www.instagram.com/reel/C6l94O9ot86/?utm_source=ig_web_copy_link&igsh=YmJyYWh1Z3ZxZnN1')">
+      <video autoplay muted loop playsinline>
+        <source src="Video-84.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Opens the Instagram reel in a new tab
+  function openReel(url) {
+    window.open(url, "_blank");
+  }
+
+  // Scroll reveal for reels
+  const reelSection = document.querySelector(".reel-showcase");
+  window.addEventListener("scroll", () => {
+    const rect = reelSection.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) {
+      reelSection.classList.add("visible");
+    }
+  });
+</script>
+
+
+  <!-- Values Section -->
+  <section class="values">
+    <h2>What We Stand For</h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <h3>🌱 Sustainability</h3>
+        <p>We craft our pieces using eco-conscious fabrics and natural dyes, ensuring minimal environmental impact.</p>
+      </div>
+      <div class="value-card">
+        <h3>🤝 Empowerment</h3>
+        <p>Every purchase supports women artisans and rural communities who handcraft each garment with care.</p>
+      </div>
+      <div class="value-card">
+        <h3>🎨 Artistry</h3>
+        <p>Inspired by India’s textile heritage, each Ishara design is a wearable piece of art — timeless, elegant, and unique.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Scroll Section -->
+  <section class="scroll-reveal">
+    <h2>Every Stitch Tells a Story</h2>
+    <p>From artisan hands to your wardrobe — Ishara connects tradition and modernity through sustainable fashion.</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Ishara by Ekta | Crafted with ❤️ in Pune</p>
+  </footer>
+
+  <script>
+    // Fade-in reveal on scroll
+    const reveals = document.querySelectorAll('.mission, .values, .scroll-reveal');
+    window.addEventListener('scroll', () => {
+      reveals.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          section.classList.add('visible');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
