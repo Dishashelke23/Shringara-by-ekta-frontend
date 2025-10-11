@@ -91,7 +91,7 @@ body {
 /* Top bar */
 .top-bar{
   position: relative;
-  background: var(--primary);
+  background: #000;
   color: var(--secondary);
   text-align: center;
   padding: 0.5rem 0;
@@ -780,6 +780,9 @@ footer a:hover {
     transition-delay: 0.35s;
   }
 
+
+
+  /* Adjust hero for mobile */
   .hero {
     height: 70vh;
     padding: 5rem 1.5rem 1.5rem 1.5rem;
